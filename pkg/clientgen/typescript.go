@@ -1981,7 +1981,7 @@ func (ts *typescript) fieldNameInStruct(field *schema.Field) string {
 func (ts *typescript) isRecursive(typ *schema.Type) bool {
 	// Treat recursively seen types as if they are optional
 	recursiveType := false
-	if n := typ.GetNamed(); n != nil {
+	if n := typ.GetNamed(); n != nil && ts.currDecl != nil {
 		recursiveType = ts.typs.IsRecursiveRef(ts.currDecl.Id, n.Id)
 	}
 	return recursiveType
